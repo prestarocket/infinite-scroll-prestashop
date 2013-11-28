@@ -1,4 +1,4 @@
-infinite-scroll-prestashop
+Infinite Scroll for Prestashop
 ==========================
 
 Infinite Scroll Implementation for Prestashop
