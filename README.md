@@ -22,6 +22,46 @@ This module is based on the [infinite-scroll jQuery plugin by Paul Irish](https:
 4. Search for "Infinite Scroll" from Modules List and Click "Install"
 5. Click "Configure" to access configuration
 
+## Working with Block Layered Module ##
+
+Block layered module uses ajax to load new products into the page after filtering. We need to create a new instance of infinite scroll everytime a the page is being refreshed. 
+
+* You need to edit the file blocklayered.js of the block layered module. 
+* Search for the function *reloadContent* (line 327 of Prestashop v1.5.6.0)
+* Scroll down until you find this piece of code 
+
+if (result.pagination.search(/[^\s]/) >= 0) {
+				if ($(result.pagination).find('ul.pagination').length)
+				{
+					$('div#pagination').show();
+					$('ul.pagination').each(function () {
+						$(this).replaceWith($(result.pagination).find('ul.pagination'));
+					});
+				}
+
+* Replace the above piece of code with this one :
+
+if (result.pagination.search(/[^\s]/) >= 0) {
+				var noOfPages = $(result.pagination).find('ul.pagination').length;
+				if (noOfPages)
+				{
+					$('div#pagination').show();
+					$('ul.pagination').each(function () {
+						$(this).replaceWith($(result.pagination).find('ul.pagination'));
+					});
+					infinite_scroll.maxPage = noOfPages + 1;
+					var path = 'modules/blocklayered/blocklayered-ajax.php?'+data+params_plus+n+'&p=';
+					infinite_scroll.path = [ path , ""] ;
+					infinite_scroll.dataType = 'json';
+					infinite_scroll.template = function(data){
+						var productList = '<div>' + data.productList + '</div>';
+						var ht = $(productList).find(infinite_scroll.contentSelector).html();
+						return ht;
+					}
+					$( infinite_scroll.contentSelector ).infinitescroll( infinite_scroll, function(newElements, data, url) { eval(infinite_scroll.callback); });
+				}
+
+
 ## Changelog ##
 
 ### 1.0 ###
