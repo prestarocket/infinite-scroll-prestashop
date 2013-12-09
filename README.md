@@ -18,7 +18,7 @@ This module is based on the [infinite-scroll jQuery plugin by Paul Irish](https:
 
 1. Login to your Prestashop site as an Administrator
 2. Navigate to Modules->Add a new module on top right
-3. Upload the module zip file and click on Upload this module. 
+3. Upload the module zip file and click on Upload this module. Please note : If you download the zip from git, you will have to rename the zip file to infinitescroll.zip before uploading.
 4. Search for "Infinite Scroll" from Modules List and Click "Install"
 5. Click "Configure" to access configuration
 
