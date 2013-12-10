@@ -71,7 +71,8 @@ class InfiniteScroll extends Module{
             'itemSelector'    => '#product_list > li',
             'contentSelector' => '#product_list',
             'debug'           => false,
-            'behavior'        => ''
+            'behavior'        => '',
+            'callback'        => ''
         );
     }
 
@@ -131,8 +132,10 @@ class InfiniteScroll extends Module{
     function shouldLoadJavascript() {
         $enabledControllers = array( 'best-sales', 'category', 'manufacturer', 'new-products', 
             'search', 'supplier');
-        if(in_array($this->context->controller->php_self, $enabledControllers)){
-            return true;
+        if(isset($this->context->controller->php_self)){
+            if(in_array($this->context->controller->php_self, $enabledControllers)){
+                return true;
+            }
         }
         return false;
     }

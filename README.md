@@ -38,21 +38,21 @@ if (result.pagination.search(/[^\s]/) >= 0) {
     		});
 	}
 </pre>
-* Replace the above piece of code with this one :
+* Replace the above piece of code with this one (This works for default theme):
 <pre>
 if (result.pagination.search(/[^\s]/) >= 0) {
-	var noOfPages = $(result.pagination).find('ul.pagination').length;
-	if (noOfPages){
+	if ($(result.pagination).find('ul.pagination').length){
 		$('div#pagination').show();
 		$('ul.pagination').each(function () {
-		  $(this).replaceWith($(result.pagination).find('ul.pagination'));
+			$(this).replaceWith($(result.pagination).find('ul.pagination'));
 		});
-		infinite_scroll.maxPage = noOfPages + 1;
+		var noOfPages = $(result.pagination).find('ul.pagination > li').length; //Write the login to find the no of pages in your theme
+		infinite_scroll.maxPage = noOfPages - 2;
 		var path = 'modules/blocklayered/blocklayered-ajax.php?'+data+params_plus+n+'&p=';
 		infinite_scroll.path = [ path , ""] ;
 		infinite_scroll.dataType = 'json';
 		infinite_scroll.template = function(data){
-			var productList = '&lt;div&gt;' + data.productList + '&lt;/div&gt;';
+			var productList = '<div>' + data.productList + '</div>';
 			var ht = $(productList).find(infinite_scroll.contentSelector).html();
 			return ht;
 		}
