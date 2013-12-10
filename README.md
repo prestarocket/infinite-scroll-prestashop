@@ -67,5 +67,8 @@ If you need any help please let us know via Github or http://support.prestastrap
 
 ## Changelog ##
 
+### 1.1 ###
+* 2013 December 7 - Modified code that needs to be added to blocklayered.js and also bugs related to module controllers
+
 ### 1.0 ###
 * 2013 November 27 - 1.0 release.
