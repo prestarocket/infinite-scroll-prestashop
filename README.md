@@ -52,7 +52,7 @@ if (result.pagination.search(/[^\s]/) >= 0) {
 		infinite_scroll.path = [ path , ""] ;
 		infinite_scroll.dataType = 'json';
 		infinite_scroll.template = function(data){
-			var productList = '<div>' + data.productList + '</div>';
+			var productList = '&lt;div&gt;' + data.productList + '&lt;/div&gt;';
 			var ht = $(productList).find(infinite_scroll.contentSelector).html();
 			return ht;
 		}
